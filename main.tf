@@ -1,3 +1,11 @@
+variable "ACCESS" {
+  type = string
+}
+
+variable "SECRET" {
+  type = string
+}
+
 terraform {
   required_providers {
     aws = {
@@ -12,6 +20,9 @@ terraform {
 provider "aws" {
   region     = "us-east-1"
 
+  # Add aws credentials here
+  access_key = var.ACCESS
+  secret_key = var.SECRET
 }
 
 data "aws_instances" "existing_instances" {
@@ -340,7 +351,7 @@ sudo apt upgrade -y
 EOF
 
   tags = {
-    Name = "web-app-server"
+    Name = "web-app-server-01"
   }
 }
 
